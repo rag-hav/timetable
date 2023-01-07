@@ -50,7 +50,7 @@ let baskets = [
   // Basket 1
   [
     { DET: "Detection and Estimation Theory" },
-    { TI: "Tomographic Imaging" },
+    { TIM: "Tomographic Imaging" },
     { PMLG: "Probabilistic Machine Learning and Graphical Model" },
     { AGA: "Advanced Graphics & Animation" },
     { SNA: "Social Network Analysis" },
@@ -96,6 +96,7 @@ let rawTimeTable = `
  |           | TIM (L) - Btech (CC3-5206) - Basket1                    |                                                       |                                                         | SDA (T) - SE (CC2-4205)                                 |
  |           | PWC (L) - WCC (CC3-5254)                                |                                                       |                                                         | ESS (P) - WCC, CLIS (CC3-5241)                          |
  |           |                                                         |                                                       |                                                         | EHWSN (P) - WCC (CC2-5242)                              |
+ |           |                                                         |                                                       |                                                         | DET (T) – (CC1-5154) - Basket1                          |
  |           |                                                         |                                                       |                                                         |                                                         |
  |-----------+---------------------------------------------------------+-------------------------------------------------------+---------------------------------------------------------+---------------------------------------------------------|
  | Tuesday   | CCPM (L) - Btech, HCI, MLIS (CC3-5255)-Basket2          | DM (L) - BTech Sec A (CC3-5206)                       | DM (L) - BTech Sec B (CC3-5207)                         | RMC (T) - Btech, RMI (CC1-2205) - Basket2               |
@@ -112,6 +113,7 @@ let rawTimeTable = `
  |           | TIM (P) - Btech (CC3-5241) - Basket1                    | BT/BCT (L) - BTech, DE, CLIS (CC3-5255) - Basket3     | SDA (P) - SE (CC3-5119)                                 | SNA (T) - Btech, DE, SE (CC3-5255) - Basket1            |
  |           | SDA (L) - SE (CC2-4105)                                 | ISRM (L) - Btech, CLIS (CC3-5106) - Basket3           | NS (P) - CLIS (CC3-5403)                                | PWC (T) - WCC (CC3-5254)                                |
  |           | NS (L) - CLIS (CC3-5255)                                | DIS (T) - Btech (CC3-5107) - Basket3                  | IBO (T) - Btech-BI (CC2-4105)                           |                                                         |
+ |           | DET (L) – (CC1-2223) - Basket1                          |                                                       |                                                         |                                                         |
  |           |                                                         |                                                       |                                                         |                                                         |
  |-----------+---------------------------------------------------------+-------------------------------------------------------+---------------------------------------------------------+---------------------------------------------------------|
  | Thursday  | RMC (L) - Btech, RMI (CC1-2205) - Basket2               | ESS (L) - WCC, CLIS (CC3-5255)                        | RMC (P) - Btech, RMI (CC3-5119) - Basket2               | PMLG (P) - BTech, MLIS, DE (CC3-5241) - Basket1         |
