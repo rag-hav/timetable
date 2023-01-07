@@ -181,12 +181,8 @@ class TimeTable extends React.Component {
                           {cell}
                         </th>
                       );
+                    let slots = [];
                     for (let slot of cell) {
-                      let res = allSubjects[slot.subjectShortName];
-                      if (!res) continue;
-                      let fullname = res[0];
-                      let basketNumber = res[1];
-
                       if (
                         (!slot.section ||
                           this.state.section.startsWith(slot.section)) && // section is valid for slot
@@ -194,23 +190,46 @@ class TimeTable extends React.Component {
                           (sub) => sub == slot.subjectShortName
                         ) // subject is selected
                       ) {
-                        return (
-                          <th
-                            scope="col"
-                            key={colIndex}
-                            className={"table-" + basketColor[basketNumber]}
-                          >{`${classType[slot.classType]} of ${fullname} at ${
-                            slot.location
-                          }`}</th>
-                        );
+                        slots.push(slot);
                       }
                     }
 
-                    return (
-                      <th scope="col" key={colIndex} className="table-light">
-                        -
-                      </th>
-                    );
+                    if (slots.length == 1) {
+                      let slot = slots[0];
+                      let res = allSubjects[slot.subjectShortName];
+                      let fullname = res[0];
+                      let basketNumber = res[1];
+                      return (
+                        <th
+                          scope="col"
+                          key={colIndex}
+                          className={"table-" + basketColor[basketNumber]}
+                        >{`${classType[slot.classType]} of ${fullname} at ${
+                          slot.location
+                        }`}</th>
+                      );
+                    } else if (slots.length == 0) {
+                      return (
+                        <th scope="col" key={colIndex} className="table-light">
+                          -
+                        </th>
+                      );
+                    } else {
+                      return (
+                        <th scope="col" key={colIndex} className="table-dark">
+                          {"Clash between\n" +
+                            slots
+                              .map((slot) => {
+                                let res = allSubjects[slot.subjectShortName];
+                                let fullname = res[0];
+                                return `${
+                                  classType[slot.classType]
+                                } of ${fullname} at ${slot.location}`;
+                              })
+                              .join(" and ")}
+                        </th>
+                      );
+                    }
                   })}
                 </tr>
               );
