@@ -72,7 +72,7 @@ let baskets = [
     { "BT/BCT": "Blockchain & Cryptocurrency" },
     { DIS: "Distributed Systems" },
     { BA: "Business Analytics" },
-    { ISLR: "Information Security Risk Management" },
+    { ISRM: "Information Security Risk Management" },
     { CEC: "Cloud and Edge Computing" },
   ],
 ];
