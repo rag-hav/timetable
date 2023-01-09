@@ -44,45 +44,56 @@ class Entry {
     this.location = res[4];
   }
 }
-let baskets = [
-  // No choice
-  [{ DM: "Data Mining" }],
-  // Basket 1
-  [
-    { DET: "Detection and Estimation Theory" },
-    { TIM: "Tomographic Imaging" },
-    { PMLG: "Probabilistic Machine Learning and Graphical Model" },
-    { AGA: "Advanced Graphics & Animation" },
-    { SNA: "Social Network Analysis" },
-    { RSG: "Remote Sensing & GIS" },
-    { DL: "Deep Learning" },
-  ],
+let baskets = {
+  it: [
+    // No choice
+    [{ DM: "Data Mining" }],
+    // Basket 1
+    [
+            { SNA: "Social Network Analysis" },
+      { DET: "Detection and Estimation Theory" },
+      { TIM: "Tomographic Imaging" },
+      { PMLG: "Probabilistic Machine Learning and Graphical Model" },
+      { AGA: "Advanced Graphics & Animation" },
+      { RSG: "Remote Sensing & GIS" },
+      { DL: "Deep Learning" },
+    ],
 
-  // Basket 2
-  [
-    { RMC: "Robot Motion Control" },
-    { CCPM: "Cognition and Cognitive Process Modelling" },
-    { DV: "Data Visualization" },
-    { EB: "Engineering Biology" },
-    { NLP: "Natural Language Processing" },
-  ],
+    // Basket 2
+    [
+            { DV: "Data Visualization" },
+      { RMC: "Robot Motion Control" },
+      { CCPM: "Cognition and Cognitive Process Modelling" },
+      { EB: "Engineering Biology" },
+      { NLP: "Natural Language Processing" },
+    ],
 
-  // Basket 3
-  [
-    { "BT/BCT": "Blockchain & Cryptocurrency" },
-    { DIS: "Distributed Systems" },
-    { BA: "Business Analytics" },
-    { ISRM: "Information Security Risk Management" },
-    { CEC: "Cloud and Edge Computing" },
+    // Basket 3
+    [
+      { "BT/BCT": "Blockchain & Cryptocurrency" },
+      { DIS: "Distributed Systems" },
+      { BA: "Business Analytics" },
+      { ISRM: "Information Security Risk Management" },
+      { CEC: "Cloud and Edge Computing" },
+    ],
   ],
-];
+  "it-bi": [
+    // No choice
+    [{ DM: "Data Mining" }, { IBO: "International Business Operations" }],
+    // Basket 1
+    [{ DIS: "Distributed Systems" }, { BA: "Business Analytics" }],
+  ],
+};
 
 let allSubjects = {};
 
-baskets.forEach((basket, basketNumber) => {
-  basket.forEach((subject) => {
-    let shortname = Object.keys(subject)[0];
-    allSubjects[shortname] = [subject[shortname], basketNumber];
+Object.keys(baskets).forEach((branch) => {
+  allSubjects[branch] = {};
+  baskets[branch].forEach((basket, basketNumber) => {
+    basket.forEach((subject) => {
+      let shortname = Object.keys(subject)[0];
+      allSubjects[branch][shortname] = [subject[shortname], basketNumber];
+    });
   });
 });
 
@@ -161,4 +172,4 @@ function generateTimeTable() {
 
 let timeTable = generateTimeTable();
 
-export { baskets, timeTable, sections, allSubjects};
+export { baskets, timeTable, sections, allSubjects };

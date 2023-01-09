@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ReactDOM from "react-dom/client";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { baskets, timeTable, sections, allSubjects } from "./data.js";
@@ -17,7 +17,7 @@ class TimeTable extends React.Component {
       branch: "it",
       rollNumber: 47,
       section: "A2",
-      selected: ["DM", "SNA", "DV", "BT/BCT"],
+      selected: ["", "SNA", "DV", "BT/BCT"],
     };
   }
   handleChoice(basketNumber, subjectShortName) {
@@ -28,16 +28,17 @@ class TimeTable extends React.Component {
     });
   }
   handleBranch(newBranch) {
-    let newSection = this.getSection(
-      sections[newBranch],
-      this.state.rollNumber
-    );
-    if (newSection.length == 0) {
-      newSection = "Invalid";
-    }
+    let rollNumber = 1;
+    let newSection = this.getSection(sections[newBranch], rollNumber);
+    if (newSection.length == 0) newSection = "Invalid";
+
     this.setState({
       branch: newBranch,
       section: newSection,
+      rollNumber: rollNumber,
+      selected: baskets[newBranch].map((baskets) => {
+        return baskets.length > 0 ? Object.keys(baskets[0])[0] : "";
+      }),
     });
   }
   handleRollNumber(newRollNumber) {
@@ -100,7 +101,7 @@ class TimeTable extends React.Component {
             <input
               className="w-100"
               type="number"
-              defaultValue="47"
+              defaultValue={this.state.rollNumber}
               onChange={(event) => this.handleRollNumber(event.target.value)}
             />
           </div>
@@ -114,7 +115,7 @@ class TimeTable extends React.Component {
           </div>
         </div>
         <div className="row mb-3">
-          {baskets.map((basket, basketNumber) => {
+          {baskets[this.state.branch].map((basket, basketNumber) => {
             // skip basket0, no choice
             if (basketNumber == 0) return;
             let buttonClass = basketColor[basketNumber];
@@ -171,6 +172,7 @@ class TimeTable extends React.Component {
               return (
                 <tr key={rowIndex}>
                   {row.map((cell, colIndex) => {
+                    // first column
                     if (colIndex == 0)
                       return (
                         <th
@@ -181,32 +183,44 @@ class TimeTable extends React.Component {
                           {cell}
                         </th>
                       );
+
+                    // add all valid slots to list
                     let slots = [];
                     for (let slot of cell) {
+                      let res =
+                        allSubjects[this.state.branch][slot.subjectShortName];
+                      if (!res) continue;
+                      let fullname = res[0];
+                      let basketNumber = res[1];
                       if (
                         (!slot.section ||
                           this.state.section.startsWith(slot.section)) && // section is valid for slot
-                        this.state.selected.some(
-                          (sub) => sub == slot.subjectShortName
-                        ) // subject is selected
+                        (basketNumber == 0 /* no choice basket  */ ||
+                          this.state.selected.some(
+                            (sub) => sub == slot.subjectShortName
+                          )) // subject is selected
                       ) {
-                        slots.push(slot);
+                        slots.push({
+                          fullname: fullname,
+                          basketNumber: basketNumber,
+                          classType: slot.classType,
+                          location: slot.location,
+                        });
                       }
                     }
 
                     if (slots.length == 1) {
-                      let slot = slots[0];
-                      let res = allSubjects[slot.subjectShortName];
-                      let fullname = res[0];
-                      let basketNumber = res[1];
+                      let subject = slots[0];
                       return (
                         <th
                           scope="col"
                           key={colIndex}
-                          className={"table-" + basketColor[basketNumber]}
-                        >{`${classType[slot.classType]} of ${fullname} at ${
-                          slot.location
-                        }`}</th>
+                          className={
+                            "table-" + basketColor[subject.basketNumber]
+                          }
+                        >{`${classType[subject.classType]} of ${
+                          subject.fullname
+                        } at ${subject.location}`}</th>
                       );
                     } else if (slots.length == 0) {
                       return (
@@ -219,12 +233,10 @@ class TimeTable extends React.Component {
                         <th scope="col" key={colIndex} className="table-dark">
                           {"Clash between\n" +
                             slots
-                              .map((slot) => {
-                                let res = allSubjects[slot.subjectShortName];
-                                let fullname = res[0];
-                                return `${
-                                  classType[slot.classType]
-                                } of ${fullname} at ${slot.location}`;
+                              .map((subject) => {
+                                return `${classType[subject.classType]} of ${
+                                  subject.fullname
+                                } at ${subject.location}`;
                               })
                               .join(" and ")}
                         </th>
