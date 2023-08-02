@@ -75,13 +75,7 @@ let baskets = [
     { TSDA: "Time Series Data Analytics" },
     { PDC: "Parallel and Distributed Computing" },
   ],
-  "it-bi": [
-    // No choice
-    [{ DM: "Data Mining" }, { IBO: "International Business Operations" }],
-    // Basket 1
-    [{ DIS: "Distributed Systems" }, { BA: "Business Analytics" }],
-  ],
-};
+];
 
 let allSubjects = {};
 
