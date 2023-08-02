@@ -17,7 +17,7 @@ class TimeTable extends React.Component {
       branch: "it",
       rollNumber: 47,
       section: "A2",
-      selected: ["", "SNA", "DV", "BT/BCT"],
+      selected: ["DMMSN", "BDA", "TSDA"],
     };
   }
   handleChoice(basketNumber, subjectShortName) {
@@ -93,7 +93,7 @@ class TimeTable extends React.Component {
             );
           })}
         </div>
-        <div className="row">
+        {/* <div className="row">
           <div className="col-6 ">
             <p className="lead text-center">Roll Number</p>
           </div>
@@ -105,15 +105,15 @@ class TimeTable extends React.Component {
               onChange={(event) => this.handleRollNumber(event.target.value)}
             />
           </div>
-        </div>
-        <div className="row">
+        </div> */}
+        {/* <div className="row">
           <div className="col-6">
             <p className="lead text-center">Section</p>
           </div>
           <div className="col-6">
             <p className="text-start">{this.state.section}</p>
           </div>
-        </div>
+        </div> */}
         <div className="row mb-3">
           {baskets[this.state.branch].map((basket, basketNumber) => {
             // skip basket0, no choice
