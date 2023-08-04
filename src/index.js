@@ -17,7 +17,7 @@ class TimeTable extends React.Component {
       branch: "it",
       rollNumber: 47,
       section: "A2",
-      selected: ["DMMSN", "BDA", "TSDA"],
+      selected: ["","DMMSN", "BDA", "TSDA"],
     };
   }
   handleChoice(basketNumber, subjectShortName) {
