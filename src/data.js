@@ -46,7 +46,9 @@ class Entry {
 }
 let baskets = {
   it: [
+    // no choice
     [],
+
     // Basket 1
     [
       // { course: "Radar and Satellite Communication" },
@@ -100,15 +102,15 @@ let rawTimeTable = `
 |           |   BDA (L) - BTech (CC3-5206) - Basket 2   |                                         |                                         |                                         |
 |           |          RMP (L) - RMI (CC1-2205)         |                                         |                                         |                                         |
 +-----------+-------------------------------------------+-----------------------------------------+-----------------------------------------+-----------------------------------------+
-|  Tuesday  |   DMMSN (L) - BTech (CC3-5106) - Basket   |   CO (T) - BTech (CC2-4205) - Basket 2  |        IML (T) - WCC (CC3-5206)         |  PDC (P) - BTech (CC3-5403) - Basket 3  |
+|  Tuesday  |   DMMSN (L) - BTech (CC3-5106) - Basket 1 |   CO (T) - BTech (CC2-4205) - Basket 2  |        IML (T) - WCC (CC3-5206)         |  PDC (P) - BTech (CC3-5403) - Basket 3  |
 |           | VR (L) - BTech (CC3-5206) - Basket 1      |                                         |   CO (P) - BTech (CC3-5403) - Basket 2  |                                         |
 |           |                                           |                                         |  BDA (P) - BTech (CC3-5404) - Basket 2  |                                         |
-|           |                                           |                                         |  CSDF (P) - Blech (CC3-5403) - Basket 2 |                                         |
+|           |                                           |                                         |  CSDF (P) - BTech (CC3-5403) - Basket 2 |                                         |
 |           |                                           |                                         |         RMP (T) - RMI (CC1-2205)        |                                         |
 +-----------+-------------------------------------------+-----------------------------------------+-----------------------------------------+-----------------------------------------+
-| Wednesday |         IML (L) - WCC (CC3-5206)          | ESIOT (T) - BTech (CC2-4105) - Basket 1 |  SDA (P) - BTech (CC3-5403) - Basket 3  | ESIOT (P) - BTech (CC3-5403) - Basket 1 |
+| Wednesday |         IML (L) - WCC (CC3-5206)          | ESIOT (T) - BTech (CC2-4105) - Basket 1 |  TSDA (P) - BTech (CC3-5403) - Basket 3 | ESIOT (P) - BTech (CC3-5403) - Basket 1 |
 |           |     TSDA(L) BTech (CC3-5206) - Basket3    |  VRN (T) - BTech (CC3-5206) - Basket 1  |  BIO (P) - BTech (CC3-5404) - Basket 3  |                                         |
-|           |   BIO (1) - BTech (CC3-5207) - Basket 3   |                                         |  NGS (L) - BTech (CC3-5155) - Basket 3  |                                         |
+|           |   BIO (L) - BTech (CC3-5207) - Basket 3   |                                         |  NGS (L) - BTech (CC3-5155) - Basket 3  |                                         |
 |           |    NGS (P)- BTech (CC3-5404) - Basket 3   |                                         |                                         |                                         |
 +-----------+-------------------------------------------+-----------------------------------------+-----------------------------------------+-----------------------------------------+
 |  Thursday |   VRN (L) - BTech (CC3-5206) - Basket 1   |  PDC (L) - BTech (CC2-4205) - Basket 3  |  VRN (P) - BTech (CC3-5403) - Basket 1  |   VR (T) - BTech (CC3-5206) - Basket 1  |
@@ -145,5 +147,6 @@ function generateTimeTable() {
 }
 
 let timeTable = generateTimeTable();
+console.log(timeTable);
 
 export { baskets, timeTable, sections, allSubjects };
